@@ -9,7 +9,7 @@
 	//
 	const now = new Date();
 	const dateTime = now.toLocaleString('en-GB');
-	console.log(`🧩 ${dateTime} [INFO] [GitHub] Logger module loaded`);
+	console.log(`🧩 ${dateTime} [INFO] [GitHub] LOG module loaded`);
 	
 	const defaultDomain = window.location.host;
 
