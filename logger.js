@@ -1,7 +1,4 @@
-console.log("LOGGER MODULE LOADED 1");
-(function mitosLOG() {
-	'use strict'; 
-console.log("LOGGER MODULE LOADED 2");
+
 	// Add MITOS class
 	window.MITOS = window.MITOS || {}; 
 	// Add MITOS log class
@@ -75,5 +72,3 @@ console.log("LOGGER MODULE LOADED 2");
 	MITOS.log.error = function(message, stack=null, domain=defaultDomain) {
 		logger(message, stack, domain, "[ERROR]", "🔴", "color: Crimson; font-weight:normal;");
 	}
-})
-();
