@@ -6,8 +6,7 @@
 
     function apiRequest({ method = "GET", url, data = null }) {
         return new Promise((resolve, reject) => {
-
-            //MITOS.log.info("MITOS API request [" + method + "] | " + url);
+            
             try {
                 // Fetch Authorization token
                 const token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
