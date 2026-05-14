@@ -1,2 +1,2 @@
 # tampermonkey-scripts
-Tampermonkey Scripts Collection
+IT MITOS Suppoer Tampermonkey Scripts Collection
