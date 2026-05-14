@@ -2,6 +2,7 @@
     'use strict';
 
     window.MITOS = window.MITOS || {};
+    window.MITOS.azure = window.MITOS.azure || {};
     window.MITOS.azure.api = window.MITOS.azure.api || {};
 
     function apiRequest({ method, url, data = null, headers = {} }) {
@@ -16,8 +17,6 @@
                 data: data ? JSON.stringify(data) : null,
 
                 onload: (res) => {
-                    log(method, url, "->", res.status);
-
                     try {
                         resolve(JSON.parse(res.responseText));
                     } 
