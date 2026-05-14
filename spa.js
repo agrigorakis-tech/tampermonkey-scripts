@@ -4,6 +4,11 @@
     window.MITOS = window.MITOS || {};
     MITOS.spa = MITOS.spa || {};
 
+    //
+	const now = new Date();
+	const dateTime = now.toLocaleString('en-GB');
+	console.log(`🧩 ${dateTime} [INFO] [GitHub] SPA module loaded`);
+    
     function hasQueryParams(hash) {
         return hash.includes('?');
     }
