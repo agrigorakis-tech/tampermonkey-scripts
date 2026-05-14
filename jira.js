@@ -26,4 +26,4 @@
       const labels = JIRA.getTicketLabels();  
       return labels.filter(label => JIRA.isLabelNumeric(label.text));
   }
-();
+})();
