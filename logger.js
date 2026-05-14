@@ -1,6 +1,7 @@
+console.log("LOGGER MODULE LOADED 1");
 (function mitosLOG() {
 	'use strict'; 
-
+console.log("LOGGER MODULE LOADED 2");
 	// Add MITOS class
 	window.MITOS = window.MITOS || {}; 
 	// Add MITOS log class
