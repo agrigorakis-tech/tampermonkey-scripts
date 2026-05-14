@@ -8,7 +8,30 @@
 	const now = new Date();
 	const dateTime = now.toLocaleString('en-GB');
 	console.log(`🧩 ${dateTime} [INFO] [GitHub] API module loaded`);
-    
+
+	// Authentication providers
+	const AuthProviders = {
+	    bearer: () => {
+	        const token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
+	
+	        if (!token) throw new Error("Missing Bearer token");
+	
+	        return {
+	            Authorization: "Bearer " + token
+	        };
+	    },
+	    pat: () => {
+	        const pat = localStorage.getItem('azdo.pat');
+	
+	        if (!pat) throw new Error("Missing PAT token");
+	
+	        return {
+	            Authorization: "Basic " + btoa(":" + pat)
+	        };
+	    },
+	    none: () => ({})
+	};
+	
     function apiRequest({ method = "GET", url, data = null }) {
         return new Promise((resolve, reject) => {
             
