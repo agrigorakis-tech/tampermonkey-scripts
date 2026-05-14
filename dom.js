@@ -5,6 +5,11 @@
     MITOS.dom = MITOS.dom || {};
     MITOS.dom.observer = MITOS.dom.observer || {};
 
+    //
+	const now = new Date();
+	const dateTime = now.toLocaleString('en-GB');
+	console.log(`🧩 ${dateTime} [INFO] [GitHub] DOM module loaded`);
+    
     MITOS.dom.observer.element = function observeElement(selector, callback = null) {
         const currentStack = new Error().stack;
 
