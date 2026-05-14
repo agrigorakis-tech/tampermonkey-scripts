@@ -20,7 +20,8 @@
 
                     try {
                         resolve(JSON.parse(res.responseText));
-                    } catch (e) {
+                    } 
+                    catch (e) {
                         resolve(res.responseText);
                     }
                 },
