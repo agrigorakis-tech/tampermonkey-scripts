@@ -9,7 +9,7 @@
 	const dateTime = now.toLocaleString('en-GB');
 	console.log(`🧩 ${dateTime} [INFO] [GitHub] API module loaded`);
 
-    function apiRequest({ method = "GET", url, data = null}) {
+    function apiRequest({ method = "GET", url, data = null }) {
         return new Promise((resolve, reject) => {
             
             try {
