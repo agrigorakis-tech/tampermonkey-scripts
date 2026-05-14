@@ -1,8 +1,8 @@
-(function MITOS_AZDO() {
+(function mitosAzure() {
     'use strict';
 
     window.MITOS = window.MITOS || {};
-    window.MITOS.azdo.api = window.MITOS.azdo.api || {};
+    window.MITOS.azure.api = window.MITOS.azure.api || {};
 
     function apiRequest({ method, url, data = null, headers = {} }) {
         return new Promise((resolve, reject) => {
@@ -42,11 +42,11 @@
         };
     }
 
-    window.MITOS.azdo.get = function (url, pat) {
+    window.MITOS.azure.api.get = function (url, pat) {
         return apiRequest({ method: "GET", url, headers: buildAuthHeader(pat) });
     };
 
-    window.MITOS.azdo.api.post = function (url, data, pat) {
+    window.MITOS.azure.api.post = function (url, data, pat) {
         return apiRequest({ method: "POST", url, data, headers: buildAuthHeader(pat) });
     };
 })();
