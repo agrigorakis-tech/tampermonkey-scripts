@@ -1,4 +1,4 @@
-
+alert("LOGGER MODULE LOADED");
 	// Add MITOS class
 	window.MITOS = window.MITOS || {}; 
 	// Add MITOS log class
