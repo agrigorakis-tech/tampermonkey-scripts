@@ -6,6 +6,11 @@
 	// Add MITOS log class
 	MITOS.log = MITOS.log || {}; 
 
+	//
+	const now = new Date();
+	const dateTime = now.toLocaleString('en-GB');
+	console.log(`🧩 ${dateTime} {INFO] [GitHub] Logger module loaded`, );
+	
 	const defaultDomain = window.location.host;
 
 	function logStack() {
