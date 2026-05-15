@@ -5,28 +5,36 @@
     MITOS.admin = MITOS.admin || {};
     MITOS.admin.toolbar = MITOS.admin.toolbar || {};
 
-    /*** HTML ***/
-    function favoritesToolbarHTML() {
-        /*** Configuration ***/
-        const favoritesConfiguration = [
-            { text: '⚡ Instances', 
+    /*** Configuration ***/
+    function getFavoritesConfiguration() {
+        return [
+            { 
+                text: '⚡ Instances', 
                 href: MITOS.config.InstancesHash,
                 external: false,
-                action: () => { MITOS.admin.viewFaultedInstances();}
+                action: () => { MITOS.admin.viewFaultedInstances(); }
             },
-            { text: '⚡ Folder Full', 
+            { 
+                text: '⚡ Folder Full', 
                 href: MITOS.config.FolderFullHash,
                 external: true 
             },
-            { text: '⚡ Users', 
+            { 
+                text: '⚡ Users', 
                 href: MITOS.config.UsersHash, 
                 external: true 
             },
-            { text: '⚡ Views', 
+            { 
+                text: '⚡ Views', 
                 href: MITOS.config.ViewHash, 
                 external: true 
             }
         ];
+    }
+
+    /*** HTML ***/
+    function favoritesToolbarHTML() {
+        const favoritesConfiguration = getFavoritesConfiguration();
 
         return `
             <div id="mitos-admin-favorites-toolbar">
@@ -325,6 +333,8 @@
 
     /*** Events ***/
     function favoritesToolbarEvents() {
+        const favoritesConfiguration = getFavoritesConfiguration();
+        
         favoritesConfiguration.forEach((link, index) => {
             const el = document.getElementById(`mitos-admin-toolbar-item-${index + 1}`);
 
