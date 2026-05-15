@@ -9,14 +9,7 @@
             
             try {
                 // Fetch Authorization token
-                let token = null;
-                
-                if(MITOS.config.env == "uat") {
-                    token = sessionStorage.getItem("authentication_access_token")
-                    localStorage.setItem('ls.token', token);
-                }
-                
-                token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
+                const token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
 
 
                 if (!token) {
