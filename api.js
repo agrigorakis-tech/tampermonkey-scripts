@@ -9,7 +9,14 @@
             
             try {
                 // Fetch Authorization token
-                const token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
+                let token = null;
+                
+                if(MITOS.config.env == "uat") {
+                    token = sessionStorage.getItem("authentication_access_token")
+                }
+                else {
+                    token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
+                }
 
                 if (!token) {
                     MITOS.log.error("Could not fetch authorization token");
