@@ -5,29 +5,29 @@
     MITOS.admin = MITOS.admin || {};
     MITOS.admin.toolbar = MITOS.admin.toolbar || {};
 
-    /*** Configuration ***/
-    const favoritesConfiguration = [
-        { text: '⚡ Instances', 
-            href: MITOS.config.InstancesHash,
-            external: false,
-            action: () => { MITOS.admin.viewFaultedInstances();}
-        },
-        { text: '⚡ Folder Full', 
-            href: MITOS.config.FolderFullHash,
-            external: true 
-        },
-        { text: '⚡ Users', 
-            href: MITOS.config.UsersHash, 
-            external: true 
-        },
-        { text: '⚡ Views', 
-            href: MITOS.config.ViewHash, 
-            external: true 
-        }
-    ];
-
     /*** HTML ***/
     function favoritesToolbarHTML() {
+        /*** Configuration ***/
+        const favoritesConfiguration = [
+            { text: '⚡ Instances', 
+                href: MITOS.config.InstancesHash,
+                external: false,
+                action: () => { MITOS.admin.viewFaultedInstances();}
+            },
+            { text: '⚡ Folder Full', 
+                href: MITOS.config.FolderFullHash,
+                external: true 
+            },
+            { text: '⚡ Users', 
+                href: MITOS.config.UsersHash, 
+                external: true 
+            },
+            { text: '⚡ Views', 
+                href: MITOS.config.ViewHash, 
+                external: true 
+            }
+        ];
+
         return `
             <div id="mitos-admin-favorites-toolbar">
                 ${favoritesConfiguration.map((link, index) => {
