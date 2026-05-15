@@ -9,7 +9,8 @@
             
             try {
                 // Fetch Authorization token
-                const token = localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
+                const token = sessionStorage.getItem('authentication_access_token') || 
+                              localStorage.getItem('ls.token')?.replace(/^"|"$/g, '');
 
 
                 if (!token) {
