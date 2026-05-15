@@ -5,11 +5,6 @@
 	window.MITOS = window.MITOS || {}; 
 	// Add MITOS log class
 	MITOS.log = MITOS.log || {}; 
-
-	//
-	const now = new Date();
-	const dateTime = now.toLocaleString('en-GB');
-	console.log(`🧩 ${dateTime} [INFO] [GitHub] LOG module loaded`);
 	
 	const defaultDomain = window.location.host;
 
@@ -73,6 +68,12 @@
 
 	MITOS.log.error = function(message, stack=null, domain=defaultDomain) {
 		logger(message, stack, domain, "[ERROR]", "🔴", "color: Crimson; font-weight:normal;");
+	}
+
+	MITOS.log.ping = function(caller = "Unknown") {
+		const now = new Date();
+		const dateTime = now.toLocaleString('en-GB');
+		console.log(`🧩 ${dateTime} [INFO] [${caller}] LOG module loaded`);
 	}
 })
 ();

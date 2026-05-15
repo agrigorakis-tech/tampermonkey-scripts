@@ -4,11 +4,6 @@
     window.MITOS = window.MITOS || {};
     MITOS.api = MITOS.api || {};
 
-    //
-	const now = new Date();
-	const dateTime = now.toLocaleString('en-GB');
-	console.log(`🧩 ${dateTime} [INFO] [GitHub] API module loaded`);
-
     function apiRequest({ method = "GET", url, data = null }) {
         return new Promise((resolve, reject) => {
             
@@ -64,4 +59,10 @@
         
         return apiRequest({ method: "POST", url, data });
     }
+
+    MITOS.api.ping = function(caller = "Unknown") {
+		const now = new Date();
+		const dateTime = now.toLocaleString('en-GB');
+		console.log(`🧩 ${dateTime} [INFO] [${caller}] API module loaded`);
+	}
 })();

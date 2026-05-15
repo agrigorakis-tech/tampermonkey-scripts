@@ -5,11 +5,6 @@
     window.MITOS.azure = window.MITOS.azure || {};
     window.MITOS.azure.api = window.MITOS.azure.api || {};
 
-    //
-	const now = new Date();
-	const dateTime = now.toLocaleString('en-GB');
-	console.log(`🧩 ${dateTime} [INFO] [GitHub] AZURE module loaded`);
-    
     function apiRequest({ method, url, data = null, headers = {} }) {
         return new Promise((resolve, reject) => {
             GM_xmlhttpRequest({
@@ -53,4 +48,10 @@
     window.MITOS.azure.api.post = function (url, data, pat) {
         return apiRequest({ method: "POST", url, data, headers: buildAuthHeader(pat) });
     };
+
+    MITOS.azure.ping = function(caller = "Unknown") {
+		const now = new Date();
+		const dateTime = now.toLocaleString('en-GB');
+		console.log(`🧩 ${dateTime} [INFO] [${caller}] AZURE module loaded`);
+	}
 })();

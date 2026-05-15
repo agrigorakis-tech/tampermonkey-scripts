@@ -26,4 +26,10 @@
       const labels = JIRA.getTicketLabels();  
       return labels.filter(label => JIRA.isLabelNumeric(label.text));
   }
+
+  JIRA.ping = function(caller = "Unknown") {
+		const now = new Date();
+		const dateTime = now.toLocaleString('en-GB');
+		console.log(`🧩 ${dateTime} [INFO] [${caller}] JIRA module loaded`);
+	}
 })();
