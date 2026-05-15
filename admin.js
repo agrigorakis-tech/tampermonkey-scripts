@@ -80,7 +80,7 @@
                         <span class="mitos-admin-instance-detail-text">
                             ${
                                 activityDetails.type === "SubProcess"
-                                ? `<a href="${$url}" 
+                                ? `<a href="${url}" 
                                     target="_blank" 
                                     id="mitos-admin-instance-step-in" class="mitos-admin-instance-detail-link">${activityDetails.id}</a>`
                                 : activityDetails.id
@@ -334,7 +334,7 @@
     /*** Events ***/
     function favoritesToolbarEvents() {
         const favoritesConfiguration = getFavoritesConfiguration();
-        
+
         favoritesConfiguration.forEach((link, index) => {
             const el = document.getElementById(`mitos-admin-toolbar-item-${index + 1}`);
 
@@ -465,11 +465,6 @@
             const activities = data?.Items || [];
 
             const treeNodes = [];
-
-            // 
-            console.log("Initial Activity ID: ", activityId);
-            console.log("Activities:");
-            console.log(activities);
           
             for (const act of activities) {
                 const node = {
@@ -481,7 +476,7 @@
 
                 // Recurse if SubProcess
                 if (act.ActivityType === "SubProcess" && act.State === "Faulted") {
-                    console.log("We should search what happens inside", act.Description);
+
                     const children = await fetchActivityTree(act.ActivityId, depth + 1, maxDepth);
 
                     // If children is an array, push all into node.children
@@ -496,7 +491,6 @@
             }
 
             MITOS.log.info(`Instance <${activityId}> activities tree: <${treeNodes.length}> activities`);
-            console.log(treeNodes);
 
             // update modal once per fetch
             if (depth === 0) {
@@ -533,8 +527,6 @@
                     status: act.State,
                     children: []
                 };
-
-                console.log("FAULTED ACTIVITY: ", act.Description);
 
                 //  Recurse  for subproccess
                 if (act.ActivityType === "SubProcess") {
@@ -749,7 +741,6 @@
         // API request -> ???
         MITOS.admin.toolbar.addInstanceActivityTree();      
         const activityTree = await fetchActivityTree(instanceID);
-        console.log(activityTree);
     }
 
     MITOS.admin.toolbar.addInstanceFolder = function renderInstanceFolderID(folderID) {
