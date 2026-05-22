@@ -108,20 +108,31 @@
       return labels.filter(label => JIRA.isLabelNumeric(label.text));
   }
 
-  JIRA.addTfsToolbar = function renderTfsToolbar(match) {
-        MITOS.log.info("TFS Toolbar | Deal Details . . .");
+  JIRA.addTfsToolbar = function renderTfsToolbar(workItem, lastUpdate) {
 
-        if(MITOS.dom.elementExists("#tfsToolbarWrapper")) {
-            MITOS.log.info("TFS Toolbar is already available");
-            return;
-        }
+    MITOS.log.info("TFS Toolbar | Rendering...");
 
-        // Inject CSS
-        MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
-        // Inject HTML
-        MITOS.dom.html("customfieldmodule", "beforebegin", tfsToolbarHTML());
-        // Events
+    if (MITOS.dom.elementExists("#tfsToolbar")) {
+        MITOS.log.info("TFS Toolbar already exists");
+        return;
     }
+
+    // Extract values
+    const status = workItem.fields["System.State"];
+    const reason = workItem.fields["System.Reason"];
+    const changeDate = workItem.fields["System.ChangedDate"];
+    const sprint = workItem.fields["System.IterationPath"];
+    const comment = workItem.fields["System.CommentCount"];
+
+    const user = lastUpdate?.revisedBy?.displayName;
+    const avatarURI = lastUpdate?.revisedBy?.imageUrl;
+
+    // Inject CSS
+    MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
+
+    // Inject HTML (IMPORTANT: pass params)
+    MITOS.dom.html("customfieldmodule", "beforebegin", tfsToolbarHTML(status, reason, changeDate, sprint, comment, user, avatarURI));
+};
 
   JIRA.ping = function(caller = "Unknown") {
 		const now = new Date();
