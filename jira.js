@@ -129,6 +129,7 @@
     const sprint = workItem.fields["System.IterationPath"];
     const commentCount = workItem.fields["System.CommentCount"];
 	const comment = lastUpdate.fields["System.History"]?.newValue;
+	console.log("---> COMMENT: ", comment);
     const user = lastUpdate?.revisedBy?.displayName;
     const avatarURI = lastUpdate?.revisedBy?.imageUrl;
 
