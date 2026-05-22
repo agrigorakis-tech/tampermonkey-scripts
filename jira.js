@@ -68,6 +68,7 @@
 			    background: #fff;
 			    border-top-left-radius: 4px;
 			    border-top-right-radius: 4px;
+				width: 70%;
 			}
 	
 	        #tfsToolbar img {
@@ -95,7 +96,7 @@
 
 			#tfsComment {
 			    padding-left: 24px;
-			    padding-right: 24px;
+			    padding-right: 12px;
 			    padding-top: 4px;
 			    text-shadow: 2px 2px 4px lightgray;
 			    border: 1px solid lightgray;
@@ -105,6 +106,7 @@
 			    min-height: 62px;
 			    display: grid;
 			    align-content: center;
+				width: 70%;
 			}
 	    `;
 	}
