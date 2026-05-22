@@ -55,20 +55,20 @@
   function tfsToolbarCSS() {
 	    return `
 	        #tfsToolbar {
-	            display: flex;
-	            gap: 18px;
-	            align-items: center;
-	            border: 1px solid gray;
-	            box-shadow: 2px 2px 12px lightgray;
-	            border-radius: 4px;
-	            width: fit-content;
-	            margin-left: 12px;
-	            margin-top: 12px;
-	            padding: 6px 24px 6px 12px;
-	            font-family: Arial, sans-serif;
-	            font-size: 13px;
-	            background: #fff;
-	        }
+			    display: flex;
+			    gap: 18px;
+			    align-items: center;
+			    border: 1px solid lightgray;
+			    box-shadow: 2px 2px 12px lightgray;
+			    margin-left: 12px;
+			    margin-top: 12px;
+			    padding: 6px 24px 6px 12px;
+			    font-family: Arial, sans-serif;
+			    font-size: 13px;
+			    background: #fff;
+			    border-top-left-radius: 4px;
+			    border-top-right-radius: 4px;
+			}
 	
 	        #tfsToolbar img {
 	            height: 48px;
@@ -92,6 +92,20 @@
 	            font-weight: 600;
 	            color: #222;
 	        }
+
+			#tfsComment {
+			    padding-left: 24px;
+			    padding-right: 24px;
+			    padding-top: 4px;
+			    text-shadow: 2px 2px 4px lightgray;
+			    border: 1px solid lightgray;
+			    margin: 0px 0px 0px 12px;
+			    border-bottom-left-radius: 4px;
+			    border-bottom-right-radius: 4px;
+			    min-height: 62px;
+			    display: grid;
+			    align-content: center;
+			}
 	    `;
 	}
 	
