@@ -116,7 +116,7 @@
   }
   
 	JIRA.getTicketLabels = function() {
-    const spans = document.querySelectorAll(".labels li a span");
+    const spans = document.querySelectorAll(".labels .lozenge span");
   
     return Array.from(spans).map(span => ({
       text: span.textContent.trim(),
