@@ -1,14 +1,95 @@
 (function jira() {
 	'use strict'; 
 
-	// Add MITOS class
-	window.JIRA = window.JIRA || {}; 
+  // Add MITOS class
+  window.JIRA = window.JIRA || {}; 
 
-	//
-	const now = new Date();
-	const dateTime = now.toLocaleString('en-GB');
-	console.log(`🧩 ${dateTime} [INFO] [GitHub] JIRA module loaded`);
+  //
+  const now = new Date();
+  const dateTime = now.toLocaleString('en-GB');
+  console.log(`🧩 ${dateTime} [INFO] [GitHub] JIRA module loaded`);
 
+  function tfsToolbarHTML(status, reason, changeDate, sprint, comment, user, avatarURI) {
+
+	    return `
+	    <div id="tfsToolbar">
+	        <img src="${avatarURI || 'https://www.incredibuild.com/wp-content/uploads/2021/03/Azure-1.png'}" />
+	
+	        <div class="tfs-item">
+	            <div class="label">Status</div>
+	            <div class="value">${status ?? '-'}</div>
+	        </div>
+	
+	        <div class="tfs-item">
+	            <div class="label">Reason</div>
+	            <div class="value">${reason ?? '-'}</div>
+	        </div>
+	
+	        <div class="tfs-item">
+	            <div class="label">Date</div>
+	            <div class="value">${changeDate ?? '-'}</div>
+	        </div>
+	
+	        <div class="tfs-item">
+	            <div class="label">Sprint</div>
+	            <div class="value">${sprint ?? '-'}</div>
+	        </div>
+	
+	        <div class="tfs-item">
+	            <div class="label">Comments</div>
+	            <div class="value">${comment ?? '-'}</div>
+	        </div>
+	
+	        <div class="tfs-item">
+	            <div class="label">User</div>
+	            <div class="value">${user ?? '-'}</div>
+	        </div>
+	    </div>
+	    `;
+	}
+
+  function tfsToolbarCSS() {
+	    return `
+	        #tfsToolbar {
+	            display: flex;
+	            gap: 12px;
+	            align-items: center;
+	            border: 1px solid gray;
+	            box-shadow: 2px 2px 12px lightgray;
+	            border-radius: 4px;
+	            width: fit-content;
+	            margin-left: 12px;
+	            margin-top: 12px;
+	            padding: 6px 24px 6px 12px;
+	            font-family: Arial, sans-serif;
+	            font-size: 13px;
+	            background: #fff;
+	        }
+	
+	        #tfsToolbar img {
+	            height: 48px;
+	            border-radius: 4px;
+	        }
+	
+	        #tfsToolbar .tfs-item {
+	            display: flex;
+	            flex-direction: column;
+	            line-height: 1.2;
+	            min-width: 80px;
+	        }
+	
+	        #tfsToolbar .label {
+	            font-size: 11px;
+	            color: #777;
+	        }
+	
+	        #tfsToolbar .value {
+	            font-weight: 600;
+	            color: #222;
+	        }
+	    `;
+	}
+	
   JIRA.isLabelNumeric = function(value) {
     return /^\d+$/.test(value);
   }
@@ -26,6 +107,27 @@
       const labels = JIRA.getTicketLabels();  
       return labels.filter(label => JIRA.isLabelNumeric(label.text));
   }
+
+  JIRA.addTfsToolbar = function renderTfsToolbar(match) {
+        MITOS.log.info("TFS Toolbar | Deal Details . . .");
+
+        if(MITOS.dom.elementExists("#tfsToolbarWrapper")) {
+            MITOS.log.info("TFS Toolbar is already available");
+            return;
+        }
+
+        // Inject CSS
+        MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
+        // Inject HTML
+        MITOS.dom.html("customfieldmodule", "beforebegin", tfsToolbarHTML());
+        // Events
+        MITOS.dom.observer.element(".row .mitos-admin-row", function() {
+            // Events
+            dealDetailsToolbarEvents();
+            // Update
+            fetchDealDetails(match);
+        });
+    }
 
   JIRA.ping = function(caller = "Unknown") {
 		const now = new Date();
