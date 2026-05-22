@@ -13,8 +13,13 @@
 
 	    return `
 	    <div id="tfsToolbar">
-	        <img src="${avatarURI || 'https://www.incredibuild.com/wp-content/uploads/2021/03/Azure-1.png'}" />
-	
+	        <img src="https://www.incredibuild.com/wp-content/uploads/2021/03/Azure-1.png" />
+			
+			<div class="tfs-item">
+	            <div class="label">Sprint</div>
+	            <div class="value">${sprint ?? '-'}</div>
+	        </div>
+			
 	        <div class="tfs-item">
 	            <div class="label">Status</div>
 	            <div class="value">${status ?? '-'}</div>
@@ -31,15 +36,11 @@
 	        </div>
 	
 	        <div class="tfs-item">
-	            <div class="label">Sprint</div>
-	            <div class="value">${sprint ?? '-'}</div>
-	        </div>
-	
-	        <div class="tfs-item">
 	            <div class="label">Comments</div>
 	            <div class="value">${comment ?? '-'}</div>
 	        </div>
-	
+
+			<img src="${avatarURI}" />
 	        <div class="tfs-item">
 	            <div class="label">User</div>
 	            <div class="value">${user ?? '-'}</div>
