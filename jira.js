@@ -130,8 +130,8 @@
     // Inject CSS
     MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
 
-    // Inject HTML (IMPORTANT: pass params)
-    MITOS.dom.html("customfieldmodule", "beforebegin", tfsToolbarHTML(status, reason, changeDate, sprint, comment, user, avatarURI));
+    // Inject HTML
+    MITOS.dom.html("#customfieldmodule", "beforebegin", tfsToolbarHTML(status, reason, changeDate, sprint, comment, user, avatarURI));
 };
 
   JIRA.ping = function(caller = "Unknown") {
