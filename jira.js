@@ -9,7 +9,7 @@
   const dateTime = now.toLocaleString('en-GB');
   console.log(`🧩 ${dateTime} [INFO] [GitHub] JIRA module loaded`);
 
-  function tfsToolbarHTML(status, reason, changeDate, sprint, comment, user, avatarURI) {
+  function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comment, user, avatarURI) {
 
 	    return `
 	    <div id="tfsToolbar">
@@ -22,7 +22,7 @@
 			
 	        <div class="tfs-item">
 	            <div class="label">Status</div>
-	            <div class="value">${status ?? '-'}</div>
+	            <div class="value status-${$status}">${status ?? '-'}</div>
 	        </div>
 	
 	        <div class="tfs-item">
@@ -37,7 +37,7 @@
 	
 	        <div class="tfs-item">
 	            <div class="label">Comments</div>
-	            <div class="value">${comment ?? '-'}</div>
+	            <div class="value">${commentCount ?? '-'}</div>
 	        </div>
 
 	        <div class="tfs-item">
@@ -46,6 +46,9 @@
 	        </div>
 			<img src="${avatarURI}" />
 	    </div>
+		<div id="tfsComment">
+			<div class="value">${comment ?? '-'}</div>
+		</div>
 	    `;
 	}
 
@@ -124,7 +127,8 @@
     const reason = workItem.fields["System.Reason"];
     const changeDate = workItem.fields["System.ChangedDate"];
     const sprint = workItem.fields["System.IterationPath"];
-    const comment = workItem.fields["System.CommentCount"];
+    const commentCount = workItem.fields["System.CommentCount"];
+	const comment = workItem.fields["System.History"];
 
     const user = lastUpdate?.revisedBy?.displayName;
     const avatarURI = lastUpdate?.revisedBy?.imageUrl;
@@ -133,7 +137,7 @@
     MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
 
     // Inject HTML
-    MITOS.dom.html("#customfieldmodule", "beforebegin", tfsToolbarHTML(status, reason, changeDate, sprint, comment, user, avatarURI));
+    MITOS.dom.html("#customfieldmodule", "beforebegin", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comment, user, avatarURI));
 };
 
   JIRA.ping = function(caller = "Unknown") {
