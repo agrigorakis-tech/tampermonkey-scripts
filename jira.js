@@ -71,8 +71,8 @@
 			}
 	
 	        #tfsToolbar img {
-	            height: 48px;
-	            border-radius: 4px;
+	            height: 38px;
+	            border-radius: 50%;
 	        }
 	
 	        #tfsToolbar .tfs-item {
