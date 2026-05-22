@@ -121,12 +121,6 @@
         // Inject HTML
         MITOS.dom.html("customfieldmodule", "beforebegin", tfsToolbarHTML());
         // Events
-        MITOS.dom.observer.element(".row .mitos-admin-row", function() {
-            // Events
-            dealDetailsToolbarEvents();
-            // Update
-            fetchDealDetails(match);
-        });
     }
 
   JIRA.ping = function(caller = "Unknown") {
