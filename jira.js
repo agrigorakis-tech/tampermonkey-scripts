@@ -110,7 +110,7 @@
 
   JIRA.addTfsToolbar = function renderTfsToolbar(workItem, lastUpdate) {
 
-    MITOS.log.info("TFS Toolbar | Rendering...");
+    MITOS.log.info("TFS Toolbar | Ticket Details ...");
 
     if (MITOS.dom.elementExists("#tfsToolbar")) {
         MITOS.log.info("TFS Toolbar already exists");
