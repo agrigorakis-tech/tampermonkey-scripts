@@ -40,11 +40,11 @@
 	            <div class="value">${comment ?? '-'}</div>
 	        </div>
 
-			<img src="${avatarURI}" />
 	        <div class="tfs-item">
 	            <div class="label">User</div>
 	            <div class="value">${user ?? '-'}</div>
 	        </div>
+			<img src="${avatarURI}" />
 	    </div>
 	    `;
 	}
@@ -53,7 +53,7 @@
 	    return `
 	        #tfsToolbar {
 	            display: flex;
-	            gap: 12px;
+	            gap: 18px;
 	            align-items: center;
 	            border: 1px solid gray;
 	            box-shadow: 2px 2px 12px lightgray;
@@ -80,6 +80,7 @@
 	        }
 	
 	        #tfsToolbar .label {
+			    padding-bottom: 6px;
 	            font-size: 11px;
 	            color: #777;
 	        }
