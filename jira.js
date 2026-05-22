@@ -137,7 +137,7 @@
     MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
 
     // Inject HTML
-    MITOS.dom.html("#customfieldmodule", "beforebegin", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comment, user, avatarURI));
+    MITOS.dom.html("#issuedetails", "afterend", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comment, user, avatarURI));
 };
 
   JIRA.ping = function(caller = "Unknown") {
