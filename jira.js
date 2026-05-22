@@ -128,8 +128,7 @@
     const changeDate = workItem.fields["System.ChangedDate"];
     const sprint = workItem.fields["System.IterationPath"];
     const commentCount = workItem.fields["System.CommentCount"];
-	const comment = workItem.fields["System.History"];
-
+	const comment = lastUpdate.fields["System.History"];
     const user = lastUpdate?.revisedBy?.displayName;
     const avatarURI = lastUpdate?.revisedBy?.imageUrl;
 
