@@ -22,7 +22,7 @@
 			
 	        <div class="tfs-item">
 	            <div class="label">Status</div>
-	            <div class="value status-${$status}">${status ?? '-'}</div>
+	            <div class="value status-${status}">${status ?? '-'}</div>
 	        </div>
 	
 	        <div class="tfs-item">
