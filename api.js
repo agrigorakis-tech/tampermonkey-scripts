@@ -57,7 +57,7 @@
         return apiRequest({ method: "GET", url });
     }
 
-    MITOS.api.post = function mitosAPI_POST(url) {
+    MITOS.api.post = function mitosAPI_POST(url, data) {
         
         return apiRequest({ method: "POST", url, data });
     }
