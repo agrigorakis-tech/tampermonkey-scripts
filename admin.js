@@ -423,6 +423,9 @@
                 console.log(data);
                 MITOS.log.info(`Instance <${instanceID}> properties (URL): FolderID: <${folderID}>`);
             }
+            else {
+                MITOS.log.warn(`Instance <${instanceID}> properties: FolderID could not be retrieved`);
+            }
         })
         .catch(function (err) {
             MITOS.log.error(`Failed to probe properties for instance ${instanceID}: ${err}`);
