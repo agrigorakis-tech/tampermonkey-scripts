@@ -409,12 +409,9 @@
         .then(function (data) {
             const folderID = data?.FolderId ?? "N/A";
             const folderURL = data?.MyFolder.Get ?? "N/A";
-            MITOS.log.info("Folder ID: " + folderID);
-            MITOS.log.info("Folder GET URL: " + folderURL);
             
-            if(folderID !== undefined) {
+            if(folderID && folderID !== "") {
                 MITOS.admin.toolbar.addInstanceFolder(folderID);
-                console.log(data);
                 MITOS.log.info(`Instance <${instanceID}> properties: FolderID: <${folderID}>`);
             }
             else if (folderURL !== undefined) {
@@ -422,7 +419,6 @@
                 const urlFolderID = match ? match[1] : "N/A";
 
                 MITOS.admin.toolbar.addInstanceFolder(urlFolderID);
-                console.log(data);
                 MITOS.log.info(`Instance <${instanceID}> properties (URL): FolderID: <${folderID}>`);
             }
             else {
