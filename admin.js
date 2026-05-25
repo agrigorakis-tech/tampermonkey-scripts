@@ -414,7 +414,7 @@
                 MITOS.admin.toolbar.addInstanceFolder(folderID);
                 MITOS.log.info(`Instance <${instanceID}> properties: FolderID: <${folderID}>`);
             }
-            else if (folderURL !== undefined) {
+            else if (folderURL) {
                 const match = folderURL.match(/Folder\/(\d+)/);
                 const urlFolderID = match ? match[1] : "N/A";
 
