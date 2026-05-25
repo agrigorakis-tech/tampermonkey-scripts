@@ -618,7 +618,7 @@
         return `${message.trim()}<br>${reasonDescription}`;
     }
 
-    function renderActivityTree(nodes, level = 0) {
+    function renderActivityTree_DEPRECATED(nodes, level = 0) {
         if (!nodes || !nodes.length) return "";
 
         // Recursive function to find paths that contain a faulted node
@@ -668,6 +668,71 @@
         }
 
         return renderNodes(faultedPaths, level * 16);
+    }
+
+    function renderActivityTree(nodes, level = 0) {
+        if (!nodes || !nodes.length) return "";
+
+        function includeFaultedPath(node) {
+            if (!node) return null;
+
+            const childrenWithFault = (node.children || [])
+                .map(includeFaultedPath)
+                .filter(Boolean);
+
+            if (node.status === "Faulted" || childrenWithFault.length) {
+                return { ...node, children: childrenWithFault };
+            }
+
+            return null;
+        }
+
+        const faultedPaths = nodes.map(includeFaultedPath).filter(Boolean);
+
+        // previousNode is the parent/previous activity
+        function renderNodes(nodesArray, indent = 0, previousNode = null) {
+            return `
+                <ul style="list-style:none; padding-left:${indent}px;">
+                    ${nodesArray.map(node => {
+                        const prefix = "⚬ ";
+                        const color = node.status === "Faulted" ? "red" : "white";
+
+                        // current node uses PREVIOUS node's id for the link
+                        const link =
+                            previousNode?.type === "SubProcess"
+                                ? `${MITOS.config.InstanceHistoryURL}/${previousNode.id}/history/diagram?isAdHoc=0`
+                                : null;
+
+                        const content = link
+                            ? `
+                                <a href="${link}"
+                                target="_blank"
+                                style="color:${color}; text-decoration:none;">
+                                    ${node.desc} (${node.type})
+                                </a>
+                            `
+                            : `
+                                <span style="color:${color}">
+                                    ${node.desc} (${node.type})
+                                </span>
+                            `;
+
+                        return `
+                            <li>
+                                ${prefix}${content}
+                                ${
+                                    node.children && node.children.length
+                                        ? renderNodes(node.children, indent + 4, node)
+                                        : ""
+                                }
+                            </li>
+                        `;
+                    }).join("")}
+                </ul>
+            `;
+        }
+
+        return renderNodes(faultedPaths, level * 16, null);
     }
     
     function updateActivityTreeModal(treeNodes) {
