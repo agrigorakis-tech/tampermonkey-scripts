@@ -819,7 +819,7 @@
          // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
         // Inject HTML
-        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", "<p style='font-style:italic; color:lightgray;'>Loading activity tree...</p>"));
+        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", "<p style='font-style:italic;'>Loading activity tree...</p>"));
         // Events
         MITOS.dom.observer.element("#mitos-admin-activity-tree", activityTreeModalEvents);
         
