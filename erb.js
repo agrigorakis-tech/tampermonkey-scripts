@@ -52,10 +52,11 @@
             <div class='row mitos-admin-row'>
                 <div class='mitos-admin-row-wrapper'>
                     <div>
-                        Ροή: <span id="instance-id">N/A</span>
+                        Ροή: 
                         <a href="#" class="mitos-admin-case-link" target="_blank">
-                            <button class='mitos-admin-btn' data-value='N/A'>📋</button>
-                        </a>
+                        <span id="instance-id">N/A</span>
+                         </a>
+                        <button class='mitos-admin-btn' data-value='N/A'>📋</button>
                     </div>
 
                     <div>
