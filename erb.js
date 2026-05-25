@@ -54,8 +54,8 @@
                     <div>
                         Ροή: 
                         <a href="#" class="mitos-admin-case-link" target="_blank">
-                        <span id="instance-id">N/A</span>
-                         </a>
+                            <span id="instance-id">N/A</span>
+                        </a>
                         <button class='mitos-admin-btn' data-value='N/A'>📋</button>
                     </div>
 
