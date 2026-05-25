@@ -439,7 +439,6 @@
 
             if(activitiesTotal === 0) {
             
-                MITOS.log.warn(`Instance <${instanceID}> history: No activities found`);
                 const lastActivityDetails = {
                     id       : '-',
                     parentId : '-',
