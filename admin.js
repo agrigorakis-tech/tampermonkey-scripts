@@ -289,14 +289,20 @@
             }
 
             #mitos-admin-instance-modal-error {
-                left: 500px;
-                top: 48px;
+                left: 186px;
+                top: 55px;
+                width: 600px;
+                max-height: 600px;
+                overflow-y: scroll;
             }
 
             #mitos-admin-activity-tree-modal {
                 min-height: 400px;
-                left: 608px;
-                top: 48px;
+                left: 472px;
+                top: 54px;
+                width: 400px;
+                max-height: 600px;
+                overflow-y: scroll;
             }
 
             .modal-title-wrapper {
