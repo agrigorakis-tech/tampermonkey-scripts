@@ -53,7 +53,9 @@
                 <div class='mitos-admin-row-wrapper'>
                     <div>
                         Ροή: <span id="instance-id">N/A</span>
-                        <button class='mitos-admin-btn' data-value='N/A'>📋</button>
+                        <a href="#" class="mitos-admin-case-link" target="_blank">
+                            <button class='mitos-admin-btn' data-value='N/A'>📋</button>
+                        </a>
                     </div>
 
                     <div>
@@ -388,12 +390,17 @@
     }
 
     function updateDealDetails(folderID, instanceID, activityDesc) {
+        const appButtons = document.querySelectorAll(".mitos-admin-btn");
+
         document.querySelector("span#folder-id").innerHTML = folderID;
-        document.querySelectorAll(".mitos-admin-btn")[1].setAttribute("data-value", folderID);
+        appButtons[1].setAttribute("data-value", folderID);
 
         document.querySelector("span#instance-id").innerHTML = instanceID;
-        document.querySelectorAll(".mitos-admin-btn")[0].setAttribute("data-value", instanceID);
+        appButtons[0].setAttribute("data-value", instanceID);
 
+        const caseURI = `https://adminclient-mitos.azure.cld/apps/admin/#/Cases/Instances/${instanceID}/history/diagram?isAdHoc=0`;
+        document.querySelector(".mitos-admin-case-link").setAttribute("href", caseURI);
+        
         document.querySelector("span#activity-desc").innerHTML = activityDesc;
     }
 
