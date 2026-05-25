@@ -429,7 +429,7 @@
 
     function fetchInstanceActivity(instanceID) {
         const url = `${MITOS.config.InstancePropsURL}/${instanceID}/history?pageSize=1000`;
-
+        MITOS.log.info(`Probing history for instance <${instanceID}>...`);
         MITOS.api.get(url)
         .then(function (data) {
             const instanceHistory = data?.Items;
