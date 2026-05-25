@@ -409,6 +409,7 @@
         .then(function (data) {
             const folderID = data?.FolderId ?? "N/A";
             const folderURL = data?.MyFolder.Get ?? "N/A";
+            MITOS.log.info("Folder ID: " + folderID);
             MITOS.log.info("Folder GET URL: " + folderURL);
             
             if(folderID !== undefined) {
