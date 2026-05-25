@@ -570,9 +570,7 @@
 
                 treeNodes.push(node);
             }
-
-            console.log("Activities Tree:", treeNodes);
-
+            
              // update modal once per fetch
              if (depth === 0) {
                 updateActivityTreeModal(treeNodes);
@@ -825,7 +823,8 @@
             return;
         }
 
-        fetchActivityTree(instanceID);
+        const activityTree = fetchActivityTree(instanceID);
+        console.log("Activity tree data:", activityTree);
 
         // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
