@@ -420,6 +420,7 @@
                 const urlFolderID = match ? match[1] : "N/A";
 
                 MITOS.admin.toolbar.addInstanceFolder(urlFolderID);
+                console.log(data);
                 MITOS.log.info(`Instance <${instanceID}> properties (URL): FolderID: <${folderID}>`);
             }
         })
