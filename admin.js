@@ -335,6 +335,9 @@
 
     function activityTreeModalCSS() {
         return `
+        div#mitos-admin-activity-tree-body {
+            padding: 6px 12px;
+        }
         `;
     }
 
@@ -568,6 +571,12 @@
                 treeNodes.push(node);
             }
 
+            console.log("Activities Tree:", treeNodes);
+
+             // update modal once per fetch
+             if (depth === 0) {
+                updateActivityTreeModal(treeNodes);
+            }
             return treeNodes;
         } 
         catch (err) {
@@ -808,7 +817,7 @@
         MITOS.dom.observer.element("#mitos-admin-instance-error", instanceModalErrorEvents);
     }
 
-    MITOS.admin.toolbar.addInstanceActivityTree = function renderInstanceActivityTree() {
+    MITOS.admin.toolbar.addInstanceActivityTree = async function renderInstanceActivityTree() {
         MITOS.log.info("Admin Toolbar | Adding Instance activity tree . . .");
 
         if(MITOS.dom.elementExists(".mitos-admin-instance-details-toolbar")) {
@@ -816,10 +825,12 @@
             return;
         }
 
-         // Inject CSS
+        fetchActivityTree();
+        
+        // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
         // Inject HTML
-        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", "<p style='font-style:italic;'>Loading activity tree...</p>"));
+        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", ""));
         // Events
         MITOS.dom.observer.element("#mitos-admin-activity-tree", activityTreeModalEvents);
         
