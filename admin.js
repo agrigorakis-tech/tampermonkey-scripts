@@ -488,7 +488,7 @@
         });
     }
 
-    async function fetchActivityTreeOLD(activityId, depth = 0, maxDepth = 9) {
+    async function fetchActivityTree_DEPRECATED(activityId, depth = 0, maxDepth = 9) {
         if (depth > maxDepth) {
             return { id: activityId, truncated: true, children: [] };
         }
@@ -817,16 +817,16 @@
         MITOS.dom.observer.element("#mitos-admin-instance-error", instanceModalErrorEvents);
     }
 
-    MITOS.admin.toolbar.addInstanceActivityTree = async function renderInstanceActivityTree() {
+    MITOS.admin.toolbar.addInstanceActivityTree = async function renderInstanceActivityTree(instanceID) {
         MITOS.log.info("Admin Toolbar | Adding Instance activity tree . . .");
 
-        if(MITOS.dom.elementExists(".mitos-admin-instance-details-toolbar")) {
+        if(MITOS.dom.elementExists("#mitos-admin-activity-tree-modal")) {
             MITOS.log.info("Instance activity tree is already available");
             return;
         }
 
-        fetchActivityTree();
-        
+        fetchActivityTree(instanceID);
+
         // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
         // Inject HTML
