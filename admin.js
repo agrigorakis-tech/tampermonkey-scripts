@@ -435,16 +435,19 @@
             const instanceHistory = data?.Items;
             const activitiesCount = instanceHistory.length;
             const lastActivity = instanceHistory[activitiesCount - 1];
+            MITOS.log.info(`Instance <${instanceID}> history response:`);
+            console.log(lastActivity);
+
 
             const lastActivityDetails = {
-                id       : lastActivity.ActivityId ?? 'N/A',
-                parentId : lastActivity.ParentId ?? 'N/A',
-                desc     : lastActivity.Description ?? 'N/A',
-                type     : lastActivity.ActivityType ?? 'N/A',
-                status   : lastActivity.State ?? 'N/A',
-                uri      : lastActivity.ActivityUri ?? 'N/A',
-                log      : lastActivity.ActivityLog ?? "",
-                error    : lastActivity.ErrorMessage ?? ""
+                id       : lastActivity?.ActivityId ?? 'N/A',
+                parentId : lastActivity?.ParentId ?? 'N/A',
+                desc     : lastActivity?.Description ?? 'N/A',
+                type     : lastActivity?.ActivityType ?? 'N/A',
+                status   : lastActivity?.State ?? 'N/A',
+                uri      : lastActivity?.ActivityUri ?? 'N/A',
+                log      : lastActivity?.ActivityLog ?? "",
+                error    : lastActivity?.ErrorMessage ?? ""
             };
             MITOS.log.info(`Instance <${instanceID}> history: <${instanceHistory.length}> activities`);
             MITOS.admin.toolbar.addInstanceActivity(lastActivityDetails);
