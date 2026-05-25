@@ -659,7 +659,7 @@
                         return `
                             <li>
                                 ${prefix}${content}
-                                ${node.children && node.children.length ? renderNodes(node.children, indent + 16) : ""}
+                                ${node.children && node.children.length ? renderNodes(node.children, indent + 4) : ""}
                             </li>
                         `;
                     }).join("")}
