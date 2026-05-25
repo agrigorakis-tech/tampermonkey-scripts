@@ -778,7 +778,9 @@
         fetchInstanceActivity(instanceID); 
         // API request -> addInstanceActivityTree()
         let activityTree = await fetchActivityTree(instanceID);
-        console.log("Final Activity Tree:", activityTree);
+        let activityTreeHTML = renderActivityTree(activityTree);
+        // Render
+        renderInstanceActivityTree(activityTreeHTML);
     }
 
     MITOS.admin.toolbar.addInstanceFolder = function renderInstanceFolderID(folderID) {
@@ -815,7 +817,7 @@
         MITOS.dom.observer.element("#mitos-admin-instance-error", instanceModalErrorEvents);
     }
 
-    MITOS.admin.toolbar.addInstanceActivityTree = async function renderInstanceActivityTree(instanceID) {
+    MITOS.admin.toolbar.addInstanceActivityTree = function renderInstanceActivityTree(activityTreeHTML) {
         MITOS.log.info("Admin Toolbar | Adding Instance activity tree . . .");
 
         if(MITOS.dom.elementExists("#mitos-admin-activity-tree-modal")) {
@@ -826,9 +828,11 @@
         // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
         // Inject HTML
-        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", ""));
+        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", activityTreeHTML));
         // Events
         MITOS.dom.observer.element("#mitos-admin-activity-tree", activityTreeModalEvents);
+
+
         
     }
 })();
