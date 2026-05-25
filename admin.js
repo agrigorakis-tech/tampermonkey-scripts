@@ -776,9 +776,9 @@
         fetchInstanceFolderID(instanceID); 
         // API request -> Calls addInstanceActivity()
         fetchInstanceActivity(instanceID); 
-        // API request -> ???
-        MITOS.admin.toolbar.addInstanceActivityTree();      
-        const activityTree = await fetchActivityTree(instanceID);
+        // API request -> addInstanceActivityTree()
+        let activityTree = await fetchActivityTree(instanceID);
+        console.log("Final Activity Tree:", activityTree);
     }
 
     MITOS.admin.toolbar.addInstanceFolder = function renderInstanceFolderID(folderID) {
@@ -822,9 +822,6 @@
             MITOS.log.info("Instance activity tree is already available");
             return;
         }
-
-        const activityTree = await fetchActivityTree(instanceID);
-        console.log("Activity tree data:", activityTree);
 
         // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
