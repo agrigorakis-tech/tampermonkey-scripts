@@ -694,10 +694,10 @@
             return `
                 <ul style="list-style:none; padding-left:${indent}px;">
                     ${nodesArray.map(node => {
-                        const prefix = "⚬ ";
-                        const color = node.status === "Faulted" ? "red" : "white";
+                        const prefix = "";
+                        const color = node.status === "Faulted" ? "Crimson" : "WhiteSmoke";
 
-                        // current node uses PREVIOUS node's id for the link
+                        // Current node link if offered from the previous node
                         const link =
                             previousNode?.type === "SubProcess"
                                 ? `${MITOS.config.InstanceHistoryURL}/${previousNode.id}/history/diagram?isAdHoc=0`
@@ -707,7 +707,7 @@
                             ? `
                                 <a href="${link}"
                                 target="_blank"
-                                style="color:${color}; text-decoration:none;">
+                                style="color:${color}; text-decoration:none; border:1px dotted gray;">
                                     ${node.desc} (${node.type})
                                 </a>
                             `
