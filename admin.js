@@ -412,6 +412,7 @@
             
             if(folderID !== undefined) {
                 MITOS.admin.toolbar.addInstanceFolder(folderID);
+                console.log(data);
                 MITOS.log.info(`Instance <${instanceID}> properties: FolderID: <${folderID}>`);
             }
             else if (folderURL !== undefined) {
