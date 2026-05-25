@@ -435,9 +435,31 @@
 
         MITOS.api.get(url)
         .then(function (data) {
+            const activitiesTotal = data?.Total ?? 0;
+
+            if(activitiesTotal === 0) {
+            
+                MITOS.log.warn(`Instance <${instanceID}> history: No activities found`);
+                const lastActivityDetails = {
+                    id       : lastActivity?.ActivityId ?? '-',
+                    parentId : lastActivity?.ParentId ?? '-',
+                    desc     : lastActivity?.Description ?? '-',
+                    type     : lastActivity?.ActivityType ?? '-',
+                    status   : lastActivity?.State ?? 'No activities found',
+                    uri      : lastActivity?.ActivityUri ?? '-',
+                    log      : lastActivity?.ActivityLog ?? "",
+                    error    : lastActivity?.ErrorMessage ?? ""
+                };
+                MITOS.log.info(`Instance <${instanceID}> history: No activities found`);
+                MITOS.admin.toolbar.addInstanceActivity(lastActivityDetails);
+                return;
+            }
+
             const instanceHistory = data?.Items;
             const activitiesCount = instanceHistory.length;
             const lastActivity = instanceHistory[activitiesCount - 1];
+
+            //Check Items
 
             const lastActivityDetails = {
                 id       : lastActivity?.ActivityId ?? 'N/A',
