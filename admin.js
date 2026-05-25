@@ -570,7 +570,7 @@
 
                 treeNodes.push(node);
             }
-            
+
              // update modal once per fetch
              if (depth === 0) {
                 updateActivityTreeModal(treeNodes);
@@ -823,7 +823,7 @@
             return;
         }
 
-        const activityTree = fetchActivityTree(instanceID);
+        const activityTree = await fetchActivityTree(instanceID);
         console.log("Activity tree data:", activityTree);
 
         // Inject CSS
