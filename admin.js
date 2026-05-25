@@ -780,7 +780,7 @@
         let activityTree = await fetchActivityTree(instanceID);
         let activityTreeHTML = renderActivityTree(activityTree);
         // Render
-        renderInstanceActivityTree(activityTreeHTML);
+        MITOS.admin.toolbar.addInstanceActivityTree(activityTreeHTML);
     }
 
     MITOS.admin.toolbar.addInstanceFolder = function renderInstanceFolderID(folderID) {
