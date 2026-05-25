@@ -437,12 +437,12 @@
             const lastActivity = instanceHistory[activitiesCount - 1];
 
             const lastActivityDetails = {
-                id       : lastActivity.ActivityId,
-                parentId : lastActivity.ParentId,
-                desc     : lastActivity.Description,
-                type     : lastActivity.ActivityType,
-                status   : lastActivity.State,
-                uri      : lastActivity.ActivityUri,
+                id       : lastActivity.ActivityId ?? 'N/A',
+                parentId : lastActivity.ParentId ?? 'N/A',
+                desc     : lastActivity.Description ?? 'N/A',
+                type     : lastActivity.ActivityType ?? 'N/A',
+                status   : lastActivity.State ?? 'N/A',
+                uri      : lastActivity.ActivityUri ?? 'N/A',
                 log      : lastActivity.ActivityLog ?? "",
                 error    : lastActivity.ErrorMessage ?? ""
             };
