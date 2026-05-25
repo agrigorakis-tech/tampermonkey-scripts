@@ -188,14 +188,15 @@
         `;
     }
 
-    function activityTreeModalHTML(title = "", content) {
+    function activityTreeModalHTML(title = "Activity List", content) {
         return `
             <div id="mitos-admin-activity-tree-modal">
                 <div class="modal-title-wrapper">
-                    <div class="modal-title">Activity List</div>
+                    <div class="modal-title">${title}</div>
                     <div class="modal-close-btn"><i class="fa fa-times-circle"></i></div>
                 </div>
                 <div id="mitos-admin-activity-tree-body">
+                    ${content}
                 </div>
             </div>
         `;
@@ -818,7 +819,7 @@
          // Inject CSS
         MITOS.dom.css(activityTreeModalCSS(), "mitos-admin-activity-tree-modal-css");
         // Inject HTML
-        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML());
+        MITOS.dom.html("#mitos-admin-activity-tree", "afterend", activityTreeModalHTML("Activity List", "<p style='font-style:italic; color:lightgray;'>Loading activity tree...</p>"));
         // Events
         MITOS.dom.observer.element("#mitos-admin-activity-tree", activityTreeModalEvents);
         
