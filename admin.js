@@ -707,7 +707,7 @@
                             ? `
                                 <a href="${link}"
                                 target="_blank"
-                                style="color:${color}; text-decoration:none; border:1px dotted gray;">
+                                style="color:${color}; text-decoration:none; border-bottom:1px dotted gray;">
                                     ${node.desc} (${node.type})
                                 </a>
                             `
