@@ -203,7 +203,63 @@
     }
 
     /*** CSS ***/
-    function favoritesToolbarCSS() {
+    function activityTreeModalCSS() {
+        return `
+            /* Tree container */
+            #mitos-admin-activity-tree-body {
+                padding: 6px 12px;
+                overflow: visible;
+            }
+
+            /* Lists */
+            #mitos-admin-activity-tree-body ul {
+                list-style: none;
+                margin: 0;
+                padding-left: 16px;
+            }
+
+            /* Root list */
+            #mitos-admin-activity-tree-body > ul {
+                padding-left: 0;
+            }
+
+            /* Tree items */
+            #mitos-admin-activity-tree-body li {
+                margin: 4px 0;
+                line-height: 1.5;
+                position: relative;
+            }
+
+            /* Nested branches */
+            #mitos-admin-activity-tree-body li > ul {
+                margin-top: 4px;
+                padding-left: 16px;
+                border-left: 1px solid #666;
+            }
+
+            /* Labels (SubProcess, etc.) */
+            #mitos-admin-activity-tree-body span {
+                display: inline-block;
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            /* Activity links */
+            #mitos-admin-activity-tree-body a {
+                color: Crimson;
+                text-decoration: none;
+                display: inline-block;
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            #mitos-admin-activity-tree-body a:hover {
+                text-decoration: underline;
+            }
+        `;
+    }
+
+    function favoritesToolbarCSS_DEPRECATED() {
         return `
             #mitos-admin-favorites-toolbar {
                 display: grid !important;
