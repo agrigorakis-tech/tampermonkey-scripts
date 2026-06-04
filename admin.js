@@ -259,7 +259,7 @@
         `;
     }
 
-    function favoritesToolbarCSS_DEPRECATED() {
+    function favoritesToolbarCSS() {
         return `
             #mitos-admin-favorites-toolbar {
                 display: grid !important;
