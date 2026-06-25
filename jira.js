@@ -9,50 +9,47 @@
   const dateTime = now.toLocaleString('en-GB');
   console.log(`🧩 ${dateTime} [INFO] [GitHub] JIRA module loaded`);
 
-  function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comment, user, avatarURI) {
+	function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments) {
 
-	    return `
-	    <div id="tfsToolbar">
-	        <img src="https://www.incredibuild.com/wp-content/uploads/2021/03/Azure-1.png" />
+		const firstComment = comments?.[0]?.text ?? '-';
+
+		return `
+		<div id="tfsToolbar">
+			<img src="https://www.incredibuild.com/wp-content/uploads/2021/03/Azure-1.png" />
 			
 			<div class="tfs-item">
-	            <div class="label">Sprint</div>
-	            <div class="value">${sprint ?? '-'}</div>
-	        </div>
+				<div class="label">Sprint</div>
+				<div class="value">${sprint ?? '-'}</div>
+			</div>
 			
-	        <div class="tfs-item">
-	            <div class="label">Status</div>
-	            <div class="value status-${status}">${status ?? '-'}</div>
-	        </div>
-	
-	        <div class="tfs-item">
-	            <div class="label">Reason</div>
-	            <div class="value">${reason ?? '-'}</div>
-	        </div>
-	
-	        <div class="tfs-item">
-	            <div class="label">Date</div>
-	            <div class="value">${changeDate ?? '-'}</div>
-	        </div>
-	
-	        <div class="tfs-item">
-	            <div class="label">Comments</div>
-	            <div class="value">${commentCount ?? '-'}</div>
-	        </div>
+			<div class="tfs-item">
+				<div class="label">Status</div>
+				<div class="value status-${status}">${status ?? '-'}</div>
+			</div>
 
-	        <div class="tfs-item">
-	            <div class="label">User</div>
-	            <div class="value">${user ?? '-'}</div>
-	        </div>
-			<!-- <img src="${avatarURI}" /> -->
-	    </div>
-		<div id="tfsComment">
-			<div class="value">${comment ?? '-'}</div>
+			<div class="tfs-item">
+				<div class="label">Reason</div>
+				<div class="value">${reason ?? '-'}</div>
+			</div>
+
+			<div class="tfs-item">
+				<div class="label">Date</div>
+				<div class="value">${changeDate ?? '-'}</div>
+			</div>
+
+			<div class="tfs-item">
+				<div class="label">Comments</div>
+				<div class="value">${commentCount ?? '-'}</div>
+			</div>
 		</div>
-	    `;
+
+		<div id="tfsComment" data-index="0">
+			<div class="value">${firstComment}</div>
+		</div>
+		`;
 	}
 
-  function tfsToolbarCSS() {
+  	function tfsToolbarCSS() {
 	    return `
 	        #tfsToolbar {
 			    display: flex;
@@ -111,53 +108,49 @@
 	    `;
 	}
 	
-  JIRA.isLabelNumeric = function(value) {
-    return /^\d+$/.test(value);
-  }
+	JIRA.isLabelNumeric = function(value) {
+		return /^\d+$/.test(value);
+	}
   
 	JIRA.getTicketLabels = function() {
-    const spans = document.querySelectorAll(".labels .lozenge span");
-  
-    return Array.from(spans).map(span => ({
-      text: span.textContent.trim(),
-      element: span
-    }));
-  }
+		const spans = document.querySelectorAll(".labels .lozenge span");
+	
+		return Array.from(spans).map(span => ({
+		text: span.textContent.trim(),
+		element: span
+		}));
+	}
 
-  JIRA.filterTicketLabels = function() {
-      const labels = JIRA.getTicketLabels();  
-      return labels.filter(label =>/^\d{5}$/.test(label.text?.trim()));
-  }
+	JIRA.filterTicketLabels = function() {
+		const labels = JIRA.getTicketLabels();  
+		return labels.filter(label =>/^\d{5}$/.test(label.text?.trim()));
+	}
 
-  JIRA.addTfsToolbar = function renderTfsToolbar(workItem, lastUpdate) {
+	JIRA.addTfsToolbar = function renderTfsToolbar(workItem, lasUpdatcommentCount, comments) {
 
-    MITOS.log.info("TFS Toolbar | Ticket Details ...");
+		MITOS.log.info("TFS Toolbar | Ticket Details ...");
 
-    if (MITOS.dom.elementExists("#tfsToolbar")) {
-        MITOS.log.info("TFS Toolbar already exists");
-        return;
-    }
+		if (MITOS.dom.elementExists("#tfsToolbar")) {
+			MITOS.log.info("TFS Toolbar already exists");
+			return;
+		}
 
-    // Extract values
-    const status = workItem.fields["System.State"];
-    const reason = workItem.fields["System.Reason"];
-    const changeDate = workItem.fields["System.ChangedDate"];
-    const sprint = workItem.fields["System.IterationPath"];
-    const commentCount = workItem.fields["System.CommentCount"];
-	const comment = lastUpdate.fields["System.History"]?.newValue;
-    const user = lastUpdate?.revisedBy?.displayName;
-    const avatarURI = lastUpdate?.revisedBy?.imageUrl;
+		// Extract values
+		const status = workItem.fields["System.State"];
+		const reason = workItem.fields["System.Reason"];
+		const changeDate = workItem.fields["System.ChangedDate"];
+		const sprint = workItem.fields["System.IterationPath"];
 
-    // Inject CSS
-    MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
+		// Inject CSS
+		MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
 
-    // Inject HTML
-    MITOS.dom.html("#issuedetails", "afterend", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comment, user, avatarURI));
-};
+		// Inject HTML
+		MITOS.dom.html("#issuedetails", "afterend", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments));
+	};
 
-  JIRA.ping = function(caller = "Unknown") {
-		const now = new Date();
-		const dateTime = now.toLocaleString('en-GB');
-		console.log(`🧩 ${dateTime} [INFO] [${caller}] JIRA module loaded`);
+	JIRA.ping = function(caller = "Unknown") {
+			const now = new Date();
+			const dateTime = now.toLocaleString('en-GB');
+			console.log(`🧩 ${dateTime} [INFO] [${caller}] JIRA module loaded`);
 	}
 })();
