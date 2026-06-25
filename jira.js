@@ -119,7 +119,7 @@
 	            color: #222;
 	        }
 
-			#tfsToolbar .tfs-comment-user {
+			.tfs-comment-user {
 			 	opacity: 0.75;
 				background: lightblue;
 				width: fit-content;
