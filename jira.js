@@ -20,7 +20,7 @@
 				tmp.innerHTML = c.text;
 				return tmp.textContent || tmp.innerText || "";
 			})();
-			const user = c?.revisedBy?.displayName ?? 'Unknown';
+			const user = c?.revisedBy?.displayName ?? '';
 
 			return `
 			<div class="tfs-comment-item">
