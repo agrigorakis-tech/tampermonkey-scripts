@@ -73,7 +73,6 @@
 
 		<div id="tfsComment">
 			${commentBlocks}
-			${readMore}
 		</div>
 		`;
 	}
