@@ -44,7 +44,9 @@
 	            <div class="label">User</div>
 	            <div class="value">${user ?? '-'}</div>
 	        </div>
+			<!-- 
 			<img src="${avatarURI}" />
+			-->
 	    </div>
 		<div id="tfsComment">
 			<div class="value">${comment ?? '-'}</div>
@@ -126,7 +128,7 @@
 
   JIRA.filterTicketLabels = function() {
       const labels = JIRA.getTicketLabels();  
-      return labels.filter(label => JIRA.isLabelNumeric(label.text));
+      return labels.filter(label =>/^\d{5}$/.test(label.text?.trim()));
   }
 
   JIRA.addTfsToolbar = function renderTfsToolbar(workItem, lastUpdate) {
