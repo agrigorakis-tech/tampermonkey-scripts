@@ -44,9 +44,7 @@
 	            <div class="label">User</div>
 	            <div class="value">${user ?? '-'}</div>
 	        </div>
-			<!-- 
-			<img src="${avatarURI}" />
-			-->
+			<!-- <img src="${avatarURI}" /> -->
 	    </div>
 		<div id="tfsComment">
 			<div class="value">${comment ?? '-'}</div>
