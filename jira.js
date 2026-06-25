@@ -119,6 +119,15 @@
 	            color: #222;
 	        }
 
+			#tfsToolbar .tfs-comment-user {
+			 	opacity: 0.75;
+				background: lightblue;
+				width: fit-content;
+				padding-left: 12px;
+				padding-right: 12px;
+				border-radius: 12px;
+			}
+
 			#tfsComment {
 			    padding-left: 24px;
 			    padding-right: 12px;
