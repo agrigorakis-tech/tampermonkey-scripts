@@ -15,7 +15,11 @@
 		const visibleComments = (comments || []).slice(0, maxVisible);
 
 		const commentBlocks = visibleComments.map(c => {
-			const text = stripHtml(c.text);
+			const text = (() => {
+				const tmp = document.createElement("div");
+				tmp.innerHTML = c.text;
+				return tmp.textContent || tmp.innerText || "";
+			})();
 			const user = c?.createdBy?.displayName ?? 'Unknown';
 
 			return `
