@@ -9,9 +9,33 @@
   const dateTime = now.toLocaleString('en-GB');
   console.log(`🧩 ${dateTime} [INFO] [GitHub] JIRA module loaded`);
 
-	function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments) {
+	function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments, bugKey) {
 
-		const firstComment = comments?.[0]?.text ?? '-';
+		const maxVisible = 3;
+		const visibleComments = (comments || []).slice(0, maxVisible);
+
+		const commentBlocks = visibleComments.map(c => {
+			const text = stripHtml(c.text);
+			const user = c?.createdBy?.displayName ?? 'Unknown';
+
+			return `
+			<div class="tfs-comment-item">
+				<div class="tfs-comment-user">${user}</div>
+				<div class="tfs-comment-text">${text}</div>
+			</div>
+			`;
+		}).join("");
+
+		const hasMore = comments.length > maxVisible;
+
+		const readMore = hasMore
+			? `<a 
+					href="https://tfs.relationalfs.com/IA2_Collection/erb-ib/_workitems/edit/${bugKey}" 
+					target="_blank"
+					class="tfs-read-more">
+					Read more...
+			</a>`
+			: "";
 
 		return `
 		<div id="tfsToolbar">
@@ -43,8 +67,9 @@
 			</div>
 		</div>
 
-		<div id="tfsComment" data-index="0">
-			<div class="value">${firstComment}</div>
+		<div id="tfsComment">
+			${commentBlocks}
+			${readMore}
 		</div>
 		`;
 	}
@@ -126,7 +151,7 @@
 		return labels.filter(label =>/^\d{5}$/.test(label.text?.trim()));
 	}
 
-	JIRA.addTfsToolbar = function renderTfsToolbar(workItem, lasUpdatcommentCount, comments) {
+	JIRA.addTfsToolbar = function renderTfsToolbar(bugKey, workItem, commentCount, comments) {
 
 		MITOS.log.info("TFS Toolbar | Ticket Details ...");
 
@@ -145,7 +170,7 @@
 		MITOS.dom.css(tfsToolbarCSS(), "tfs-toolbar-css");
 
 		// Inject HTML
-		MITOS.dom.html("#issuedetails", "afterend", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments));
+		MITOS.dom.html("#issuedetails", "afterend", tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments, bugKey));
 	};
 
 	JIRA.ping = function(caller = "Unknown") {
