@@ -11,7 +11,7 @@
 
 	function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments, bugKey) {
 
-		const maxVisible = 3;
+		const maxVisible = 1;
 		const visibleComments = (comments || []).slice(0, maxVisible);
 
 		const commentBlocks = visibleComments.map(c => {
