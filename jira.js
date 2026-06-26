@@ -12,7 +12,7 @@
 	function tfsToolbarHTML(status, reason, changeDate, sprint, commentCount, comments, bugKey) {
 
 		const maxVisible = 1;
-		const visibleComments = (comments || []).slice(0, maxVisible);
+		const visibleComments = (comments || []).slice(-maxVisible);
 
 		const commentBlocks = visibleComments.map(c => {
 			const text = (() => {
@@ -68,6 +68,10 @@
 			<div class="tfs-item">
 				<div class="label">Comments</div>
 				<div class="value">${commentCount ?? '-'}</div>
+			</div>
+
+			<div class="tfs-item">
+				<img id="toggle-tfs-comment" src="https://cdn-icons-png.flaticon.com/512/16799/16799604.png">
 			</div>
 		</div>
 
@@ -142,6 +146,13 @@
 			    display: grid;
 			    align-content: center;
 				width: 70%;
+			}
+
+			#toogle-tfs-comment {
+				width: 24px;
+				height: 24px;
+				border-radius: 0px;
+				cursor: pointer;
 			}
 	    `;
 	}
