@@ -748,7 +748,7 @@
         // previousNode is the parent/previous activity
         function renderNodes(nodesArray, indent = 0, previousNode = null) {
             return `
-                <ul style="list-style:none; padding-left:${indent}px;">
+                <div>
                     ${nodesArray.map(node => {
                         const prefix = "";
                         const color = node.status === "Faulted" ? "Crimson" : "WhiteSmoke";
@@ -774,17 +774,17 @@
                             `;
 
                         return `
-                            <li>
+                            <div>
                                 ${prefix}${content}
                                 ${
                                     node.children && node.children.length
                                         ? renderNodes(node.children, indent + 4, node)
                                         : ""
                                 }
-                            </li>
+                            </div>
                         `;
                     }).join("")}
-                </ul>
+                </div>
             `;
         }
 
