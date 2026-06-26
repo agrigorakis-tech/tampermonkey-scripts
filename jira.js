@@ -133,7 +133,6 @@
 			}
 
 			#tfsComment {
-				display: none;
 			    padding-left: 24px;
 			    padding-right: 12px;
 			    padding-top: 4px;
@@ -143,12 +142,12 @@
 			    border-bottom-left-radius: 4px;
 			    border-bottom-right-radius: 4px;
 			    min-height: 62px;
-			    display: grid;
+			    display: none;
 			    align-content: center;
 				width: 70%;
 			}
 
-			#toogle-tfs-comment {
+			#toggle-tfs-comment {
 				width: 24px;
 				height: 24px;
 				border-radius: 0px;
