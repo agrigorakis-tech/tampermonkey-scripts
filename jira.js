@@ -70,8 +70,6 @@
 				<div class="value">${commentCount ?? '-'}</div>
 			</div>
 
-			<button >
-
 			<div class="tfs-item">
 				<img 
 					id="toggle-tfs-comment" 
