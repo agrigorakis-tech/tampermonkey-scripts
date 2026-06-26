@@ -100,7 +100,7 @@
 				width: 70%;
 			}
 	
-	        #tfsToolbar img {
+	        #tfsToolbar > img {
 	            height: 38px;
 	            border-radius: 50%;
 	        }
