@@ -129,6 +129,7 @@
 			}
 
 			#tfsComment {
+				display: none;
 			    padding-left: 24px;
 			    padding-right: 12px;
 			    padding-top: 4px;
