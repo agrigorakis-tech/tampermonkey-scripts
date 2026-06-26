@@ -321,7 +321,7 @@
             }
 
             @media (min-width: 1701px) {
-                #instanceCaseHistory div:nth-child(2) {
+                #instanceCaseHistory > div:nth-child(2) {
                     float:right;
                     }
                 }
