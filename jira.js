@@ -70,8 +70,14 @@
 				<div class="value">${commentCount ?? '-'}</div>
 			</div>
 
+			<button >
+
 			<div class="tfs-item">
-				<img id="toggle-tfs-comment" src="https://cdn-icons-png.flaticon.com/512/16799/16799604.png">
+				<img 
+					id="toggle-tfs-comment" 
+					src="https://cdn-icons-png.flaticon.com/512/16799/16799604.png" 
+					onclick="const el = document.getElementById('tfsComment'); el.style.display = el.style.display === 'grid' ? 'none' : 'grid';"
+				>
 			</div>
 		</div>
 
